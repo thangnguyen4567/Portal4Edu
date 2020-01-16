@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "290147907523",
+    "firebase_url": "https://portal4edu-bb4d5.firebaseio.com",
+    "project_id": "portal4edu-bb4d5",
+    "storage_bucket": "portal4edu-bb4d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290147907523:android:a12d06c21f3afc0efdef76",
+        "android_client_info": {
+          "package_name": "com.portal4edu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290147907523-8f2r9kimf0relutt4cjgff1hrfi3s7o8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIX-zJTZblmzO6KEEOY2DG37bMxrbxazA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290147907523-8f2r9kimf0relutt4cjgff1hrfi3s7o8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
