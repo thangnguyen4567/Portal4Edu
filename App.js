@@ -19,6 +19,7 @@ import OneSignal from 'react-native-onesignal';
 import AsyncStorage from '@react-native-community/async-storage';
 // import DeviceInfo from 'react-native-device-info';
 import VnrLoading from './components/VnrLoading/VnrLoading';
+import VnrLoadingPages from './components/VnrLoading/VnrLoadingPages';
 export default class App extends Component {
   constructor(properties) {
     super(properties);
@@ -55,6 +56,7 @@ export default class App extends Component {
   }
 
   onOpened(openResult) {
+    debugger
     if (!Vnr_Function.CheckIsNullOrEmpty(openResult.notification.payload) &&
       !Vnr_Function.CheckIsNullOrEmpty(openResult.notification.payload.additionalData) &&
       !Vnr_Function.CheckIsNullOrEmpty(openResult.notification.payload.additionalData.screenName)) {
@@ -70,6 +72,7 @@ export default class App extends Component {
       })
     }
   }
+
   onIds = async (device) => {
     if (device.userId != null && !this.isHaveDeviceId) {
       //this.setState({ playerId: device.userId , deviceId : device.userId });
@@ -124,6 +127,7 @@ export default class App extends Component {
       <View style={{ flex: 1, }}>
         <SafeAreaView style={{ flex: 0, backgroundColor: '#33A2F8' }}></SafeAreaView>
         <SafeAreaView style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
+          <VnrLoadingPages />
           {viewWeb}
         </SafeAreaView>
       </View>

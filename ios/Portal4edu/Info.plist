@@ -39,6 +39,8 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save pictures for certain activities.</string>
 	<key>OneSignal_app_groups_key</key>
 	<string>group.org.reactjs.native.example.Portal4edu.onesignal</string>
 	<key>UIBackgroundModes</key>
