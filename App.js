@@ -103,6 +103,7 @@ export default class App extends Component {
   SetDeviceId = async (_deviceId) => {
     // const UniqueId = DeviceInfo.getUniqueId();
     const _Token = await AsyncStorage.getItem('Token');
+    console.log(_deviceId,'_deviceId')
     if (_Token != undefined && _Token != '') {
       this.setState({ 'deviceId': _deviceId, 'token': _Token });
     }
