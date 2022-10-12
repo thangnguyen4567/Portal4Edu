@@ -18,7 +18,7 @@ import {
 
 import VnrLoading from "./VnrLoading/VnrLoading"
 import { WebView } from "react-native-webview"
-import AsyncStorage from "@react-native-community/async-storage"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ManageFileSevice from "../utils/ManageFileSevice"
 const { height, width } = Dimensions.get("window")
 export default class WebViewComponent extends Component {
@@ -150,6 +150,7 @@ export default class WebViewComponent extends Component {
           javaScriptEnabled={true} //localStorage.setItem("authorizationData", "{"UserID":24872,"Token":"np9Mu1WT10jOK6NL8kdKQa4ReUCf5oeM","UserName":"vnr","UserCode":"vnr","urlApi":"http://portalapi4edu.vnresource.net/","CenterCode":"vnr","IPInternet":null,"IPLocal":null,"AccessTime":"2020-01-07T16:41:12.007875+07:00","ExpireTime":"2020-01-07T17:11:12.007875+07:00","Status":0,"ClientInfo":{},"UserResource":{}}");
           injectedJavaScript={script_Inject}
           onMessage={(event) => this.listenFromWeb(event)}
+          // sharedCookiesEnabled={true}
         // onNavigationStateChange={(navState) => {
         //   // Keep track of going back navigation within component
         //   console.log(navState, 'navState')

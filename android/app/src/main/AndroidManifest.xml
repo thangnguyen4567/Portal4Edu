@@ -1,58 +1,26 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.portal4edu"
-  xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission tools:node="remove" android:name="android.permission.READ_PHONE_STATE" />
+  package="com.portal4edu_v2">
+
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- firebase permission notfication -->
-    <!-- <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.VIBRATE" /> -->
-    <!--======================-->
 
-    <!-- permission download file  -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-
-    
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:roundIcon="@mipmap/ic_launcher"
+      android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
-      android:theme="@style/AppTheme"
-      android:usesCleartextTraffic="true"
-      >
-      <!-- firebase cấu hình icon cho notification ,, lưu ý : file image icon phải đầy dủ kích cở đặt ở thư mục  trong app/src/main/res -->
-      <!-- <meta-data
-          android:name="com.google.firebase.messaging.default_notification_icon"
-          android:resource="@drawable/ic_stat_vnr"/> -->
-    <!-- firebase cấu hình color cho notification ,, lưu ý : file color là dạng xml đặt trong app/src/main/res/values/colors.xml -->
-      <!-- <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorPrimaryDark" /> -->
-      <!-- Example: Sets all OneSignal notification's accent color to Green by default.  -->
-      <!-- Color format is in ARGB. -->
-      <meta-data android:name="com.onesignal.NotificationAccentColor.DEFAULT" android:value="52a0fd" />
+      android:theme="@style/AppTheme">
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+        android:launchMode="singleTask"
         android:windowSoftInputMode="adjustResize"
-        android:launchMode="singleTop"> 
+        android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-            <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/> <!-- permission download file  -->
         </intent-filter>
       </activity>
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-      <!-- firebase MESSAGING_EVENT notfication  -->
-      <!-- <service android:name="io.invertase.firebase.messaging.RNFirebaseMessagingService">
-        <intent-filter>
-          <action android:name="com.google.firebase.MESSAGING_EVENT" />
-        </intent-filter>
-      </service> -->
     </application>
-
 </manifest>

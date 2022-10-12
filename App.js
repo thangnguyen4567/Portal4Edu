@@ -11,12 +11,13 @@ import {
   StatusBar,
   SafeAreaView,
   Platform,
-  View
+  View,
+  TextInput
 } from 'react-native';
 import WebViewComponent from './components/WebView';
 import Vnr_Function from './utils/Vnr_Function';
 import OneSignal from 'react-native-onesignal';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 // import DeviceInfo from 'react-native-device-info';
 import VnrLoading from './components/VnrLoading/VnrLoading';
 import VnrLoadingPages from './components/VnrLoading/VnrLoadingPages';
@@ -74,6 +75,7 @@ export default class App extends Component {
   }
 
   onIds = async (device) => {
+    console.log(device, 'device')
     if (device.userId != null && !this.isHaveDeviceId) {
       //this.setState({ playerId: device.userId , deviceId : device.userId });
       await AsyncStorage.setItem('DeviceId', device.userId);
@@ -83,6 +85,7 @@ export default class App extends Component {
 
   checkEmptyDeviceId = async () => {
     const _deviceId = await AsyncStorage.getItem('DeviceId');
+    console.log(_deviceId, '_deviceId')
     if (_deviceId != null) {
       this.SetDeviceId(_deviceId);
       this.isHaveDeviceId = true;
@@ -103,7 +106,7 @@ export default class App extends Component {
   SetDeviceId = async (_deviceId) => {
     // const UniqueId = DeviceInfo.getUniqueId();
     const _Token = await AsyncStorage.getItem('Token');
-    console.log(_deviceId,'_deviceId')
+    console.log(_Token, '_deviceId')
     if (_Token != undefined && _Token != '') {
       this.setState({ 'deviceId': _deviceId, 'token': _Token });
     }
@@ -130,6 +133,12 @@ export default class App extends Component {
         <SafeAreaView style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
           <VnrLoadingPages />
           {viewWeb}
+          {/* {
+            deviceId && (
+              <TextInput value={deviceId}>
+              </TextInput>
+            )
+          } */}
         </SafeAreaView>
       </View>
       //https://portal4edu.vnresource.net:82
