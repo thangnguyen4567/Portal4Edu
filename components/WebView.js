@@ -108,6 +108,8 @@ export default class WebViewComponent extends Component {
       data = event.nativeEvent.data
     }
 
+    console.log(data,'datadatadata')
+
     if (
       data != null &&
       typeof data == "object" &&
@@ -129,7 +131,8 @@ export default class WebViewComponent extends Component {
   }
 
   render() {
-    const { DeviceId, Token, DataNotification } = this.props
+    const { DeviceId, Token, DataNotification } = this.props;
+    console.log(`${DeviceId}','${Token}','${DataNotification}`,'ádsad')
     const script_Inject = `
       setTimeout(function () {
         if(window.location.hash === "#/access/LoginMobile" && LoginMobile && typeof LoginMobile == "function"){
@@ -145,7 +148,8 @@ export default class WebViewComponent extends Component {
           ref={(ref) => (this.refWebView = ref)}
           source={{
             uri:
-              `https://portal4edu.vnresource.net:82/#/access/LoginMobile`,
+            'https://portaltest.vnresource.net/'
+              //`https://portal4edu.vnresource.net:82/#/access/LoginMobile`,
           }}
           javaScriptEnabled={true} //localStorage.setItem("authorizationData", "{"UserID":24872,"Token":"np9Mu1WT10jOK6NL8kdKQa4ReUCf5oeM","UserName":"vnr","UserCode":"vnr","urlApi":"http://portalapi4edu.vnresource.net/","CenterCode":"vnr","IPInternet":null,"IPLocal":null,"AccessTime":"2020-01-07T16:41:12.007875+07:00","ExpireTime":"2020-01-07T17:11:12.007875+07:00","Status":0,"ClientInfo":{},"UserResource":{}}");
           injectedJavaScript={script_Inject}
