@@ -12,7 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3703A03E4C6FEDB9ACB0FA35 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BA121C6B3356BB87B18C4C5 /* libPods-OneSignalNotificationServiceExtension.a */; };
-		650308D4DA040D8894AB4A16 /* libPods-Portal4Edu_V2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3855EF53889141DF8CA907FF /* libPods-Portal4Edu_V2.a */; };
+		650308D4DA040D8894AB4A16 /* libPods-Portal4Edu_V2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3855EF53889141DF8CA907FF /* libPods-Portal4Edu_V2.a */; settings = {ATTRIBUTES = (Weak, ); }; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		849974B128B9D51B00284331 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849974B028B9D51B00284331 /* NotificationService.swift */; };
 		849974B528B9D51B00284331 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 849974AE28B9D51B00284331 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -614,8 +614,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Portal4Edu_V2/Portal4Edu_V2.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = R728VT7UHH;
 				ENABLE_BITCODE = NO;
@@ -624,7 +624,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -632,7 +632,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Portal4edu;
 				PRODUCT_NAME = Portal4Edu_V2;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = Portal4Edu;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -652,12 +652,13 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = R728VT7UHH;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Portal4Edu_V2/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.8;
+				MARKETING_VERSION = 2.6;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -665,7 +666,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Portal4edu;
 				PRODUCT_NAME = Portal4Edu_V2;
-				PROVISIONING_PROFILE_SPECIFIER = Portal3duTypeAdHoc;
+				PROVISIONING_PROFILE_SPECIFIER = Portal4Edu;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -841,7 +842,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Portal4edu.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Portal4edu_AdHoc_NotificationServiceExtension;
+				PROVISIONING_PROFILE_SPECIFIER = Portal4EduAppStoreForNotificationServiceExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -882,7 +883,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.example.Portal4edu.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Portal4edu_AdHoc_NotificationServiceExtension;
+				PROVISIONING_PROFILE_SPECIFIER = Portal4EduAppStoreForNotificationServiceExtension;
 				SKIP_INSTALL = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_EMIT_LOC_STRINGS = YES;

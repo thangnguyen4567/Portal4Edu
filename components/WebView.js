@@ -148,8 +148,7 @@ export default class WebViewComponent extends Component {
           ref={(ref) => (this.refWebView = ref)}
           source={{
             uri:
-            'https://portaltest.vnresource.net/'
-              //`https://portal4edu.vnresource.net:82/#/access/LoginMobile`,
+              `https://portal4edu.vnresource.net:82/#/access/LoginMobile`,
           }}
           javaScriptEnabled={true} //localStorage.setItem("authorizationData", "{"UserID":24872,"Token":"np9Mu1WT10jOK6NL8kdKQa4ReUCf5oeM","UserName":"vnr","UserCode":"vnr","urlApi":"http://portalapi4edu.vnresource.net/","CenterCode":"vnr","IPInternet":null,"IPLocal":null,"AccessTime":"2020-01-07T16:41:12.007875+07:00","ExpireTime":"2020-01-07T17:11:12.007875+07:00","Status":0,"ClientInfo":{},"UserResource":{}}");
           injectedJavaScript={script_Inject}
