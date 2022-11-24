@@ -76,7 +76,7 @@ export default class WebViewComponent extends Component {
       let script_Inject = `
         setTimeout(function () {
           if(LoginMobile && typeof LoginMobile == "function"){
-            LoginMobile('${DeviceId}','${_Token}','${DataNotification}');
+            LoginMobile('${DeviceId}','${_Token}','${DataNotification}','${Platform.OS}');
           }
         },500);
         true;
@@ -119,7 +119,7 @@ export default class WebViewComponent extends Component {
       data = event.nativeEvent.data
     }
 
-    console.log(data, 'datadatadata')
+    console.log(event.nativeEvent.data, 'event.nativeEvent.data')
 
     if (
       data != null &&
@@ -150,7 +150,7 @@ export default class WebViewComponent extends Component {
         }
       })
     }
-    else if (event.nativeEvent.data && (data.uri == null && data.uri == "")) {
+    else if (event.nativeEvent.data) {
       await AsyncStorage.setItem("Token", event.nativeEvent.data)
       //this.setState({ token: event.nativeEvent.data })
     }
@@ -181,7 +181,7 @@ export default class WebViewComponent extends Component {
     const script_Inject = `
       setTimeout(function () {
         if(window.location.hash === "#/access/LoginMobile" && LoginMobile && typeof LoginMobile == "function"){
-          LoginMobile('${DeviceId}','${Token}','${DataNotification}');
+          LoginMobile('${DeviceId}','${Token}','${DataNotification}','${Platform.OS}');
         }
       },2000);
       true;
