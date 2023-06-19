@@ -12,7 +12,8 @@ import {
   SafeAreaView,
   Platform,
   View,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 import WebViewComponent from './components/WebView';
 import Vnr_Function from './utils/Vnr_Function';
@@ -36,20 +37,24 @@ export default class App extends Component {
   }
 
   OneSignalInit = () => {
-    OneSignal.init("646c0def-07ca-40f8-a51b-5b87f48644c1", {
-      kOSSettingsKeyAutoPrompt: true, // tu dong nhac nguoi dung kich hoat thong bao
-      kOSSettingsKeyInFocusDisplayOption: 2 // cau hinh hien thi khi app dang bat hien thi notification
-    });
-    OneSignal.inFocusDisplaying(2); // hien thi notification khi app dang bat
-    OneSignal.addEventListener('received', this.onReceived);
-    OneSignal.addEventListener('opened', this.onOpened.bind(this));
-    OneSignal.addEventListener('ids', this.onIds);
-  }
+    // OneSignal.init("646c0def-07ca-40f8-a51b-5b87f48644c1", {
+    //   kOSSettingsKeyAutoPrompt: true, // tu dong nhac nguoi dung kich hoat thong bao
+    //   kOSSettingsKeyInFocusDisplayOption: 2 // cau hinh hien thi khi app dang bat hien thi notification
+    // });
+    // OneSignal.inFocusDisplaying(2); // hien thi notification khi app dang bat
+    // OneSignal.addEventListener('received', this.onReceived);
+    // OneSignal.addEventListener('opened', this.onOpened.bind(this));
+    // OneSignal.addEventListener('ids', this.onIds);
 
-  componentWillUnmount() {
-    OneSignal.removeEventListener('received', this.onReceived);
-    OneSignal.removeEventListener('opened', this.onOpened);
-    OneSignal.removeEventListener('ids', this.onIds);
+    // Đẩy thông báo App
+    OneSignal.setAppId("646c0def-07ca-40f8-a51b-5b87f48644c1");
+    //Method for handling notifications opened
+    OneSignal.setNotificationOpenedHandler(notification => {
+        console.log("OneSignal: notification opened:", notification);
+    });
+    OneSignal.getDeviceState().then(deviceState => {
+        this.onIds(deviceState)
+    })
   }
 
   onReceived(notification) {
@@ -75,7 +80,6 @@ export default class App extends Component {
   }
 
   onIds = async (device) => {
-    console.log(device, 'device')
     if (device.userId != null && !this.isHaveDeviceId) {
       //this.setState({ playerId: device.userId , deviceId : device.userId });
       await AsyncStorage.setItem('DeviceId', device.userId);
@@ -85,7 +89,6 @@ export default class App extends Component {
 
   checkEmptyDeviceId = async () => {
     const _deviceId = await AsyncStorage.getItem('DeviceId');
-    console.log(_deviceId, '_deviceId')
     if (_deviceId != null) {
       this.SetDeviceId(_deviceId);
       this.isHaveDeviceId = true;
@@ -145,116 +148,3 @@ export default class App extends Component {
     );
   }
 };
-
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-// import React, { Component } from 'react';
-// import {
-//   Platform,
-//   StyleSheet,
-//   Text,
-//   View,
-//   Button,
-//   TouchableOpacity
-// } from 'react-native';
-// import OneSignal from 'react-native-onesignal';
-
-// const instructions = Platform.select({
-//   ios: 'Press Cmd+R to reload,\n' +
-//     'Cmd+D or shake for dev menu',
-//   android: 'Double tap R on your keyboard to reload,\n' +
-//     'Shake or press menu button for dev menu',
-// });
-
-// type Props = {};
-// export default class App extends Component<Props> {
-
-//   constructor(properties) {
-//     super(properties);
-//     OneSignal.init("646c0def-07ca-40f8-a51b-5b87f48644c1", {
-//       kOSSettingsKeyAutoPrompt: true, // tu dong nhac nguoi dung kich hoat thong bao
-//       kOSSettingsKeyInFocusDisplayOption: 2 // cau hinh hien thi khi app dang bat hien thi notification
-//     });
-
-//     OneSignal.addEventListener('received', this.onReceived);
-//     OneSignal.addEventListener('opened', this.onOpened);
-//     OneSignal.addEventListener('ids', this.onIds);
-//     this.state = {
-//       show: false
-//     }
-//   }
-
-//   handleOpen = () => {
-//     this.setState({ show: true })
-//   }
-
-//   handleClose = () => {
-//     this.setState({ show: false })
-//   }
-//   componentWillUnmount() {
-
-//     OneSignal.removeEventListener('received', this.onReceived);
-//     OneSignal.removeEventListener('opened', this.onOpened);
-//     OneSignal.removeEventListener('ids', this.onIds);
-//     OneSignal.inFocusDisplaying(2); // hien thi notification khi app dang bat
-//   }
-
-//   onReceived(notification) {
-//     console.log("Notification received: ", notification);
-//   }
-
-//   onOpened(openResult) {
-//     console.log('Message: ', openResult.notification.payload.body);
-//     console.log('Data: ', openResult.notification.payload.additionalData);
-//     console.log('isActive: ', openResult.notification.isAppInFocus);
-//     console.log('openResult: ', openResult);
-//   }
-
-//   onIds(device) {
-//     debugger
-//     console.log('Device info: ', device);
-//   }
-
-//   render() {
-//     return (
-//       <View style={styles.container}>
-
-//         <Text style={styles.welcome}>
-//           Welcome to React Native!
-//         </Text>
-//         <Text style={styles.instructions}>
-//           To get started, edit App.js
-//         </Text>
-//         <Text style={styles.instructions}>
-//           {instructions}
-//         </Text>
-//         <TouchableOpacity onPress={()=> { OneSignal.increaseBadgeCount() }}>
-//           <Text>Increase badge</Text>
-//         </TouchableOpacity>
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: '#F5FCFF',
-//   },
-//   welcome: {
-//     fontSize: 20,
-//     textAlign: 'center',
-//     margin: 10,
-//   },
-//   instructions: {
-//     textAlign: 'center',
-//     color: '#333333',
-//     marginBottom: 5,
-//   },
-// });
