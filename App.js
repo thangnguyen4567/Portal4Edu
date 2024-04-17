@@ -12,8 +12,7 @@ import {
   SafeAreaView,
   Platform,
   View,
-  TextInput,
-  Alert
+  Alert,
 } from 'react-native';
 import WebViewComponent from './components/WebView';
 import Vnr_Function from './utils/Vnr_Function';
@@ -22,6 +21,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // import DeviceInfo from 'react-native-device-info';
 import VnrLoading from './components/VnrLoading/VnrLoading';
 import VnrLoadingPages from './components/VnrLoading/VnrLoadingPages';
+import NetInfo from '@react-native-community/netinfo';
+import OfflineView from './components/OfflineView';
 export default class App extends Component {
   constructor(properties) {
     super(properties);
@@ -29,32 +30,23 @@ export default class App extends Component {
       deviceId: '',
       token: null,
       dataNotification: null,
-      refreshWebView: false
-      //playerId: ''
+      refreshWebView: false,
+      isConnected: true
     }
-    this.isHaveDeviceId = false;
-
   }
 
   OneSignalInit = () => {
-    // OneSignal.init("646c0def-07ca-40f8-a51b-5b87f48644c1", {
-    //   kOSSettingsKeyAutoPrompt: true, // tu dong nhac nguoi dung kich hoat thong bao
-    //   kOSSettingsKeyInFocusDisplayOption: 2 // cau hinh hien thi khi app dang bat hien thi notification
-    // });
-    // OneSignal.inFocusDisplaying(2); // hien thi notification khi app dang bat
-    // OneSignal.addEventListener('received', this.onReceived);
-    // OneSignal.addEventListener('opened', this.onOpened.bind(this));
-    // OneSignal.addEventListener('ids', this.onIds);
+      // Đẩy thông báo App
+      OneSignal.setAppId("646c0def-07ca-40f8-a51b-5b87f48644c1");
+      OneSignal.getDeviceState().then(deviceState => {
+          this.onIds(deviceState)
+      })
+      OneSignal.setNotificationOpenedHandler(this.onOpened);
+    }
 
-    // Đẩy thông báo App
-    OneSignal.setAppId("646c0def-07ca-40f8-a51b-5b87f48644c1");
-    //Method for handling notifications opened
-    OneSignal.setNotificationOpenedHandler(notification => {
-        console.log("OneSignal: notification opened:", notification);
-    });
-    OneSignal.getDeviceState().then(deviceState => {
-        this.onIds(deviceState)
-    })
+  componentWillUnmount() {
+    // Hủy đăng ký xử lý khi component unmount
+    OneSignal.clearHandlers();
   }
 
   onReceived(notification) {
@@ -62,7 +54,6 @@ export default class App extends Component {
   }
 
   onOpened(openResult) {
-    debugger
     if (!Vnr_Function.CheckIsNullOrEmpty(openResult.notification.payload) &&
       !Vnr_Function.CheckIsNullOrEmpty(openResult.notification.payload.additionalData) &&
       !Vnr_Function.CheckIsNullOrEmpty(openResult.notification.payload.additionalData.screenName)) {
@@ -80,10 +71,11 @@ export default class App extends Component {
   }
 
   onIds = async (device) => {
-    if (device.userId != null && !this.isHaveDeviceId) {
+    if (device.userId != null) {
       //this.setState({ playerId: device.userId , deviceId : device.userId });
       await AsyncStorage.setItem('DeviceId', device.userId);
       this.SetDeviceId(device.userId);
+      // this.setState({ 'deviceId': device.userId})
     }
   }
 
@@ -91,10 +83,10 @@ export default class App extends Component {
     const _deviceId = await AsyncStorage.getItem('DeviceId');
     if (_deviceId != null) {
       this.SetDeviceId(_deviceId);
-      this.isHaveDeviceId = true;
       this.OneSignalInit();
     }
     else {
+      this.SetDeviceId('first_app');
       this.OneSignalInit();
     }
   }
@@ -104,12 +96,19 @@ export default class App extends Component {
     if (Platform.OS == "android") {
       StatusBar.setBackgroundColor('#33A2F8', true);
     }
+    NetInfo.addEventListener((state) => {
+      var status = `${state.isConnected}`;
+      if(status == 'true') {
+          this.setState({isConnected:true})
+      } else {
+          this.setState({isConnected:false})
+      }
+    })
   }
 
   SetDeviceId = async (_deviceId) => {
     // const UniqueId = DeviceInfo.getUniqueId();
     const _Token = await AsyncStorage.getItem('Token');
-    console.log(_Token, '_deviceId')
     if (_Token != undefined && _Token != '') {
       this.setState({ 'deviceId': _deviceId, 'token': _Token });
     }
@@ -119,7 +118,7 @@ export default class App extends Component {
   }
 
   render() {
-    const { deviceId, token, dataNotification, refreshWebView } = this.state;
+    const { deviceId, token, dataNotification, refreshWebView, isConnected } = this.state;
     let viewWeb = <VnrLoading size={'large'} />;
     if (deviceId != '' && deviceId != null) {
       viewWeb = (
@@ -135,7 +134,11 @@ export default class App extends Component {
         <SafeAreaView style={{ flex: 0, backgroundColor: '#33A2F8' }}></SafeAreaView>
         <SafeAreaView style={{ flex: 1, flexDirection: 'column', justifyContent: 'center' }}>
           <VnrLoadingPages />
-          {viewWeb}
+          {isConnected == true ? (
+            viewWeb
+          ) : (
+            <OfflineView/>
+          )}
           {/* {
             deviceId && (
               <TextInput value={deviceId}>
