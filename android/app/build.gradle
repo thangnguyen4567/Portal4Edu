@@ -144,10 +144,10 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.portal4edu_v2"
+        applicationId "com.portal4edu"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 9
+        versionCode 14
         versionName "1.1"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
@@ -167,7 +167,7 @@ android {
                     cppFlags "-std=c++17"
                     // Make sure this target name is the same you specify inside the
                     // src/main/jni/Android.mk file for the `LOCAL_MODULE` variable.
-                    targets "portal4edu_v2_appmodules"
+                    targets "portal4edu_appmodules"
                 }
             }
             if (!enableSeparateBuildPerCPUArchitecture) {

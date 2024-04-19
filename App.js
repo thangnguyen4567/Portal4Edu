@@ -44,11 +44,6 @@ export default class App extends Component {
       OneSignal.setNotificationOpenedHandler(this.onOpened);
     }
 
-  componentWillUnmount() {
-    // Hủy đăng ký xử lý khi component unmount
-    OneSignal.clearHandlers();
-  }
-
   onReceived(notification) {
     console.log("Notification received: ", notification);
   }
@@ -72,10 +67,8 @@ export default class App extends Component {
 
   onIds = async (device) => {
     if (device.userId != null) {
-      //this.setState({ playerId: device.userId , deviceId : device.userId });
       await AsyncStorage.setItem('DeviceId', device.userId);
       this.SetDeviceId(device.userId);
-      // this.setState({ 'deviceId': device.userId})
     }
   }
 
@@ -90,12 +83,13 @@ export default class App extends Component {
       this.OneSignalInit();
     }
   }
-  componentDidMount() {
+  async componentDidMount() {
     this.checkEmptyDeviceId();
     console.disableYellowBox = true;
     if (Platform.OS == "android") {
       StatusBar.setBackgroundColor('#33A2F8', true);
     }
+    // Kiểm tra có kết nối mạng hay ko
     NetInfo.addEventListener((state) => {
       var status = `${state.isConnected}`;
       if(status == 'true') {

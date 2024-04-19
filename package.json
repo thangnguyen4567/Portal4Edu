@@ -1,5 +1,5 @@
 {
-  "name": "Portal4Edu_V2",
+  "name": "Portal4Edu",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "react-native": "0.69.5",
     "react-native-device-info": "^10.0.2",
     "react-native-file-viewer": "^2.1.5",
-    "react-native-onesignal": "^4.5.1",
+    "react-native-onesignal": "^5.1.2",
     "react-native-webview": "^11.23.0",
     "rn-fetch-blob": "^0.12.0"
   },
