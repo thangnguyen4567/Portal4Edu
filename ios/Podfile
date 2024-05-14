@@ -7,6 +7,7 @@ install! 'cocoapods', :deterministic_uuids => false
 production = ENV["PRODUCTION"] == "1"
 
 target 'Portal4Edu_V2' do
+
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -30,12 +31,26 @@ target 'Portal4Edu_V2' do
     # Pods for testing
   end
 
+  #post_install do |installer|
+   # react_native_post_install(installer)
+    #__apply_Xcode_12_5_M1_post_install_workaround(installer)
+  #end
+
   post_install do |installer|
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    installer.pods_project.targets.each do |target|
+     target.build_configurations.each do |config|
+      config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      config.build_settings['ARCHS[sdk=iphonesimulator*]'] = 'x86_64'
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)', '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION']
+     end
+    end
   end
+
 end
 
 target 'OneSignalNotificationServiceExtension' do
+  #pod 'OneSignalXCFramework', '= 5.1.5'
   pod 'OneSignalXCFramework', '>= 3.0', '< 4.0'
 end

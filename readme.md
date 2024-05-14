@@ -5,7 +5,7 @@ Dành cho android
 >
 Dành cho ios
 >
-> npx react-native run-ios --mode Release #ios
+> npx react-native run-ios --configuration Release --device "Your Device Name"
 >
 # Chạy ứng dụng 
 > npm run android
