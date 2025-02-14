@@ -5,7 +5,8 @@
   "scripts": {
     "create-bundle": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ios/main.jsbundle --assets-dest ios",
     "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator='iPhone 15 Pro Max'",
+    "ios": "react-native run-ios --simulator='iPhone 15 Plus'",
+    "ios-release": "react-native run-ios --configuration Release --device 'iPhone 15 Plus'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
@@ -18,7 +19,8 @@
     "react-native-device-info": "^10.0.2",
     "react-native-file-viewer": "^2.1.5",
     "react-native-onesignal": "^4.5.1",
-    "react-native-webview": "^11.23.0",
+    "react-native-permissions": "^4.1.5",
+    "react-native-webview": "^13.10.2",
     "rn-fetch-blob": "^0.12.0"
   },
   "devDependencies": {

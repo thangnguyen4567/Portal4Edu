@@ -299,7 +299,7 @@ PODS:
   - react-native-onesignal (4.5.1):
     - OneSignalXCFramework (= 3.12.4)
     - React (< 1.0.0, >= 0.13.0)
-  - react-native-webview (11.23.0):
+  - react-native-webview (13.10.2):
     - React-Core
   - React-perflogger (0.69.5)
   - React-RCTActionSheet (0.69.5):
@@ -375,6 +375,8 @@ PODS:
     - React-Core
   - RNFileViewer (2.1.5):
     - React-Core
+  - RNPermissions (4.1.5):
+    - React-Core
   - SocketRocket (0.6.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
@@ -444,6 +446,7 @@ DEPENDENCIES:
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFileViewer (from `../node_modules/react-native-file-viewer`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -542,6 +545,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-device-info"
   RNFileViewer:
     :path: "../node_modules/react-native-file-viewer"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -581,7 +586,7 @@ SPEC CHECKSUMS:
   React-logger: 15c734997c06fe9c9b88e528fb7757601e7a56df
   react-native-netinfo: 2517ad504b3d303e90d7a431b0fcaef76d207983
   react-native-onesignal: 7bd44dbd031d8d57110c0203836ffc37ddead526
-  react-native-webview: e771bc375f789ebfa02a26939a57dbc6fa897336
+  react-native-webview: 62e4ebfceec2c024577606ea7b12e57268f3bca0
   React-perflogger: 367418425c5e4a9f0f80385ee1eaacd2a7348f8e
   React-RCTActionSheet: e4885e7136f98ded1137cd3daccc05eaed97d5a6
   React-RCTAnimation: 7c5a74f301c9b763343ba98a3dd776ed2676993f
@@ -598,10 +603,11 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: b90b71f45b8b97be43bc4284e71a6af48ac9f547
   RNDeviceInfo: 0a7c1d2532aa7691f9b9925a27e43af006db4dae
   RNFileViewer: ce7ca3ac370e18554d35d6355cffd7c30437c592
+  RNPermissions: 7498c794b88892b065c12d134f76043b47e3dae4
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: c2b1f2494060865ac1f27e49639e72371b1205fa
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: fd28b7970a934d43c267f9cc92afea605d2deda1
+PODFILE CHECKSUM: d0a4d97edac87ac201d394c7abc5da5c538dabfd
 
 COCOAPODS: 1.15.2
